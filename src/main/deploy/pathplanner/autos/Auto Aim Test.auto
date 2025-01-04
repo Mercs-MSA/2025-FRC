@@ -1,0 +1,55 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.36,
+      "y": 5.54
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Start Shooter Auto"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Auto Aim Test 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Auto Pivot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset All"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

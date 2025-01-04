@@ -1,0 +1,163 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.38,
+      "y": 5.54
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Start Shooter"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy Of Preload"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of PreloadToPodium"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of 2PieceRightIm"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of MidWing2CenterL"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Note"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of CenterLToMidWing"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of 2PieceLeftIm"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset All"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

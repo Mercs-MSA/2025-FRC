@@ -1,0 +1,115 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.6933452953924437,
+      "y": 4.414985377759629
+    },
+    "rotation": -62.81888891452282
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Start Shooter Auto"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Pivot 5-piece"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset Pivot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3PiecePath1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3PiecePath2"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.05
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Auto Pivot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.05
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3PiecePath3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3PiecePath4"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.05
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Auto Pivot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset All"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

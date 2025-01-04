@@ -1,0 +1,127 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.38,
+      "y": 5.54
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Start Shooter Auto"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Pivot 5-piece"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of Podium"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Auto Pivot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of 2PieceRightIm"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Auto Pivot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of 2PieceLeftIm"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Note"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of backToSub"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.75
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset All"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

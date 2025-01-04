@@ -1,0 +1,145 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.38,
+      "y": 5.54
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Start Shooter Auto"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Pivot 5-piece"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "5-PiecePath1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "5-PiecePath2"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Auto Pivot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "5-PiecePath3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Auto Pivot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "5-PiecePath4Copy"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Auto Pivot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "5-PiecePath5Copy"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Note"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Sub Auto Pivot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score Auto"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset All"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}
