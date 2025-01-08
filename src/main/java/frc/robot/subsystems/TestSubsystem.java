@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj2.command.Command;
 
 // import frc.robot.subsystems.SubsystemLib;
 
@@ -29,7 +30,8 @@ public class TestSubsystem extends SubsystemLib{
             configGearRatio(1);
             configNeutralBrakeMode(true);
             configInvert(true); //true if you want it to spin clockwise
-            configMotionMagic(147000, 161000, 0);
+            // configMotionMagic(147000, 161000, 0);
+            SetPositionVoltage(rotations);
         }
 
 
@@ -43,6 +45,10 @@ public class TestSubsystem extends SubsystemLib{
         if(attached){
             motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig); 
         }
+    }
+
+    public Command testMotorGoToPosition(double pos) {
+        return run(() -> SetPositionVoltage(0)).withName("TestSubsystem-GotoPosition"); // doesnt actually go anywhere
     }
 
     @Override
