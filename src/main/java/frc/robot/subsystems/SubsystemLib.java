@@ -204,12 +204,12 @@ public abstract class SubsystemLib extends SubsystemBase{
             }
         }
 
-        public void applyInvert(boolean invert) {  //ALWAYS test this! We do not want chains snapping. Run the motros before we put the mechanism on
+        public void configInvert(boolean invert) {  //ALWAYS test this! We do not want chains snapping. Run the motros before we put the mechanism on
             if(!invert){
-                talonConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+                talonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
             }
             else {
-                talonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+                talonConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
             }
         }
 
@@ -270,10 +270,24 @@ public abstract class SubsystemLib extends SubsystemBase{
             configPID(kP, kI, kD);
         }
 
+        public void configForwardGains(double kV, double kA, double kS, double kG){
+            configGains(kV, kA, kS, kG);
+        }
+
         private void configPID(double kP, double kI, double kD) {
             talonConfig.Slot0.kP = kP;
             talonConfig.Slot0.kI = kI;
             talonConfig.Slot0.kD = kD;
+        }
+
+        public void configGains(double  kV, double kA, double kS, double kG) {
+            talonConfig.Slot0.kV = kV;
+            talonConfig.Slot0.kA = kA;
+            talonConfig.Slot0.kS = kS;
+            talonConfig.Slot0.kG = kG;
+
+
+
         }
     }
 }
