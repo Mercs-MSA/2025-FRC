@@ -16,11 +16,14 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.CommandBeginWheels;
 import frc.robot.commands.CommandToPos;
+import frc.robot.commands.IntakePivotMoveToPos;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.TestSubsystem;
 import frc.robot.subsystems.SubsystemLib;
 import frc.robot.subsystems.TestIntakeFlywheels;
+import frc.robot.subsystems.TestIntakePivot;
+import frc.robot.Constants.*;
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -42,6 +45,8 @@ public class RobotContainer {
     public static final TestSubsystem m_testSubsystem = new TestSubsystem(false); // make sure to specify whether it is attached
 
     public static final TestIntakeFlywheels m_testIntakeFlywheelsMotor = new TestIntakeFlywheels(false);
+
+    public static final TestIntakePivot m_TestIntakePivot = new TestIntakePivot(false);
 
     public RobotContainer() {
         configureBindings();
@@ -76,7 +81,9 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
-        joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
+        //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
+
+        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.position));
 
         joystick.rightTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, true));
         

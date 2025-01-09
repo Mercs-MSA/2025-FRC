@@ -2,9 +2,10 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.TestIntakePivot;
+import frc.robot.Constants.TestIntakePivotConstants;
 
 public class IntakePivotMoveToPos extends Command {
-    private TestIntakePivot m_testIntakePivot = new TestIntakePivot(true);
+    private TestIntakePivot m_testIntakePivot = new TestIntakePivot(TestIntakePivotConstants.attached);
     private double pos;
 
     public IntakePivotMoveToPos(double pos) {

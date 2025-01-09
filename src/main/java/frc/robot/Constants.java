@@ -34,6 +34,8 @@ public class Constants {
     public static final class TestSubsystemConstants{
         public static final int id = 0;
 
+        public static final boolean attached = false;
+
         public static final double kP = 100; 
         public static final double kS = 0; 
         public static final double kV = 0; 
@@ -45,6 +47,8 @@ public class Constants {
     }
     public static final class TestSwivelConstants{
         public static final int id = 21;
+
+        public static final boolean attached = false;
 
         public static final double kP = 100; 
         public static final double kS = 0; 
@@ -59,6 +63,8 @@ public class Constants {
     public static final class TestIntakeFlywheelsConstants{
         public static final int id = 26;
 
+        public static final boolean attached = false;
+
         public static final double kP = 100; 
         public static final double kS = 0; 
         public static final double kV = 0; 
@@ -72,6 +78,8 @@ public class Constants {
 
     public static final class TestIntakePivotConstants{
         public static final int id = 11;
+
+        public static final boolean attached = false;
 
         public static final double kP = 100; 
         public static final double kS = 0; 
