@@ -93,6 +93,14 @@ public abstract class SubsystemLib extends SubsystemBase{
         }
     }
 
+    public double GetPosition() {
+        if (attached) {
+            return motor.getPosition().getValueAsDouble();
+        } else {
+            return 0.0;
+        }
+    }
+
     /*This is more spectrum 3847 Motion Magic. I did not write all of this. But i did implement their Param stuff.*/
 
     /**

@@ -1,8 +1,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
-import frc.robot.Constants.TestSubsystemConstants;
 
 // import frc.robot.subsystems.SubsystemLib;
 
@@ -10,10 +8,8 @@ import frc.robot.Constants.TestSubsystemConstants;
 
 // import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class TestSubsystem extends SubsystemLib{
-
-
-    public class TestSubsystemConfig extends Config{
+public class TestIntakePivot extends SubsystemLib {
+    public class TestSubsystemConfig extends Config {
 
         /* MAKE SURE TO CHANGE THESE VALUES! THE PID IS NOT CONFIGURED */
 
@@ -26,23 +22,20 @@ public class TestSubsystem extends SubsystemLib{
         public final double velocityKv = 0;
 
         public TestSubsystemConfig() {
-            super("TestMotor", TestSubsystemConstants.id, "rio");  //It is on rio, but make sure that you change the id
-            configPIDGains(TestSubsystemConstants.kP, 0, 0);
-            configForwardGains(TestSubsystemConstants.kS, TestSubsystemConstants.kV, 0, 0);
+            super("TestMotor", 0, "rio");  //It is on rio, but make sure that you change the id
+            configPIDGains(velocityKp, 0, 0);
+            configForwardGains(velocityKs, velocityKv, 0, 0);
             configGearRatio(1);
             configNeutralBrakeMode(true);
             configInvert(true); //true if you want it to spin clockwise
             // configMotionMagic(147000, 161000, 0);
             // SetPositionVoltage(rotations);
         }
-
-
-
     }
 
     public TestSubsystemConfig config;
 
-    public TestSubsystem(boolean attached){
+    public TestIntakePivot(boolean attached){
         super(attached);
         if(attached){
             motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig); 
@@ -51,6 +44,10 @@ public class TestSubsystem extends SubsystemLib{
 
     public void testMotorGoToPosition(double pos) {
         SetPositionVoltage(pos); // doesnt actually go anywhere
+    }
+
+    public double testMotorGetPosition() {
+        return GetPosition();
     }
 
     @Override
