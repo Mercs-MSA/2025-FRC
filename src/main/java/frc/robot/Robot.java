@@ -4,7 +4,11 @@
 
 package frc.robot;
 
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -17,6 +21,42 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    SmartDashboard.putData("Test", new Sendable() {
+      @Override
+      public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType("Funnier");
+    
+        builder.addBooleanProperty("Is Funny", () -> ControlOne.getAButton(), null);
+        }
+        });
+        SmartDashboard.putData("Test", new Sendable() {
+      @Override
+      public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType("Funnier");
+    
+        builder.addBooleanProperty("Is Funny", () -> ControlOne.getAButton(), null);
+        }
+        });
+    
+        SmartDashboard.putData("Test2", new Sendable() {
+          @Override
+          public void initSendable(SendableBuilder builder) {
+            builder.setSmartDashboardType("Funnier");
+        
+            builder.addDoubleProperty("Slider from mario 64", () -> ControlOne.getLeftX(), null);
+            builder.addDoubleProperty("Slider from mario odyessy", () -> ControlOne.getLeftY(), null);
+            }
+            });
+    
+            SmartDashboard.putData("Test3", new Sendable() {
+              @Override
+              public void initSendable(SendableBuilder builder) {
+                builder.setSmartDashboardType("Funnier");
+            
+                builder.addDoubleProperty("Slider from mario galaxy", () -> funnyMeter, null);
+                builder.addBooleanProperty("Funny meters are off the charts", () -> offTheCharts, null);
+                }
+                });
   }
 
   /**
@@ -26,8 +66,20 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before LiveWindow and
    * SmartDashboard integrated updating.
    */
+  double funnyMeter = 0;
+  XboxController ControlOne = new XboxController(0); 
+  boolean offTheCharts = false;
+
+
   @Override
   public void robotPeriodic() {
+    
+    if (funnyMeter > 3) {
+      offTheCharts = true;
+    }
+    else {
+      offTheCharts = false;
+    }
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
