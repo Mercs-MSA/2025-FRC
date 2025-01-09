@@ -60,6 +60,10 @@ public abstract class SubsystemLib extends SubsystemBase{
         }
     }
 
+    public double getPivotMotorPosition(){
+        return motor.getPosition().getValueAsDouble();
+    }
+
 
     /**
      * velocity control

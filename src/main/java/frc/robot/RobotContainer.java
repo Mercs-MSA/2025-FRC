@@ -83,7 +83,10 @@ public class RobotContainer {
 
         //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
 
-        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.position));
+        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp));
+        joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown));
+
+
 
         joystick.rightTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, true));
         

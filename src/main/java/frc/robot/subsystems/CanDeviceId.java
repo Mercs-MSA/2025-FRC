@@ -16,7 +16,7 @@ public class CanDeviceId {
 
     // Use the default bus name (empty string).
     public CanDeviceId(int deviceNumber) {
-        this(deviceNumber, "");
+        this(deviceNumber, "canivore");
     }
 
     public int getDeviceNumber() {

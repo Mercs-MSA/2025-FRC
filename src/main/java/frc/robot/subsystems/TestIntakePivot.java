@@ -17,14 +17,13 @@ public class TestIntakePivot extends SubsystemLib {
 
         /* These values will later be added into a constants file that has not yet been created. 
          */
-        public final double rotations = TestIntakePivotConstants.position;
 
         public final double velocityKp = TestIntakePivotConstants.kP;
         public final double velocityKs = 0;
         public final double velocityKv = 0;
 
         public TestSubsystemConfig() {
-            super("IntakePivotMotor", TestIntakePivotConstants.id, "rio");  //It is on rio, but make sure that you change the id
+            super("IntakePivotMotor", TestIntakePivotConstants.id, "canivore");  //It is on rio, but make sure that you change the id
             configPIDGains(velocityKp, 0, 0);
             configForwardGains(velocityKs, velocityKv, 0, 0);
             configGearRatio(1);
