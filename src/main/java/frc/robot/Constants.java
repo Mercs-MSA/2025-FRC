@@ -43,9 +43,8 @@ public class Constants {
         public static final double voltageOut = 0;
         public static final double position = 0;
     }
-
-    public static final class TestIntakeFlywheelsConstants{
-        public static final int id = 0;
+    public static final class TestSwivelConstants{
+        public static final int id = 21;
 
         public static final double kP = 100; 
         public static final double kS = 0; 
@@ -54,6 +53,19 @@ public class Constants {
 
 
         public static final double voltageOut = 0;
+        public static final double position = 0;
+    }
+
+    public static final class TestIntakeFlywheelsConstants{
+        public static final int id = 26;
+
+        public static final double kP = 100; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+
+
+        public static final double voltageOut = 2;
         public static final double position = 0;
     }
 
