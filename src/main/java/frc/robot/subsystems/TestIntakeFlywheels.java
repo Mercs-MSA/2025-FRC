@@ -25,7 +25,7 @@ public class TestIntakeFlywheels extends SubsystemLib {
             configGearRatio(1);
             configNeutralBrakeMode(true);
             configInvert(true);
-            SetPositionVoltage(rotations);
+            //SetPositionVoltage(rotations);
         }
 
 
