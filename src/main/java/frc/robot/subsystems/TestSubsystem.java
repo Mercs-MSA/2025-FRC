@@ -47,8 +47,8 @@ public class TestSubsystem extends SubsystemLib{
         }
     }
 
-    public Command testMotorGoToPosition(double pos) {
-        return run(() -> SetPositionVoltage(0)).withName("TestSubsystem-GotoPosition"); // doesnt actually go anywhere
+    public void testMotorGoToPosition(double pos) {
+        SetPositionVoltage(pos); // doesnt actually go anywhere
     }
 
     @Override

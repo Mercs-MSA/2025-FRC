@@ -14,7 +14,6 @@ import com.ctre.phoenix6.controls.PositionVoltage;
 
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-// import frc.robot.subsystems.CanDeviceId;  //Why in yellow? I thought I used this. 
 import edu.wpi.first.wpilibj.DriverStation;
 // import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
