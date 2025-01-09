@@ -31,7 +31,7 @@ public class TestSubsystem extends SubsystemLib{
             configNeutralBrakeMode(true);
             configInvert(true); //true if you want it to spin clockwise
             // configMotionMagic(147000, 161000, 0);
-            SetPositionVoltage(rotations);
+            // SetPositionVoltage(rotations);
         }
 
 
