@@ -21,7 +21,7 @@ public class TestSubsystem extends SubsystemLib{
          */
         public final double rotations = 0;
 
-        public final double velocityKp = 0;
+        public final double velocityKp = TestSubsystemConstants.kP;
         public final double velocityKs = 0;
         public final double velocityKv = 0;
 
@@ -31,7 +31,7 @@ public class TestSubsystem extends SubsystemLib{
             configForwardGains(TestSubsystemConstants.kS, TestSubsystemConstants.kV, 0, 0);
             configGearRatio(1);
             configNeutralBrakeMode(true);
-            configInvert(true); //true if you want it to spin clockwise
+            isClockwise(true); //true if you want it to spin clockwise
             // configMotionMagic(147000, 161000, 0);
             // SetPositionVoltage(rotations);
         }

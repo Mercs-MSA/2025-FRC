@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 // import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import frc.robot.Constants.TestIntakeFlywheelsConstants;
+
 public class TestIntakeFlywheels extends SubsystemLib {
     public class TestSubsystemConfig extends Config {
 
@@ -13,18 +15,18 @@ public class TestIntakeFlywheels extends SubsystemLib {
 
         /* These values will later be added into a constants file that has not yet been created. 
          */
-        public final double rotations = 0;
-        public final double velocityKp = 0;
+        public final double rotations = TestIntakeFlywheelsConstants.position;
+        public final double velocityKp = TestIntakeFlywheelsConstants.kP;
         public final double velocityKs = 0;
         public final double velocityKv = 0;
 
         public TestSubsystemConfig() {
-            super("FlywheelsMotor", 0, "rio");  //It is on rio, but make sure that you change the id
+            super("FlywheelsMotor", TestIntakeFlywheelsConstants.id, "rio");  //It is on rio, but make sure that you change the id
             configPIDGains(velocityKp, 0, 0);
             configForwardGains(velocityKs, velocityKv, 0, 0);
             configGearRatio(1);
             configNeutralBrakeMode(true);
-            configInvert(true);
+            isClockwise(true);
             //SetPositionVoltage(rotations);
         }
 

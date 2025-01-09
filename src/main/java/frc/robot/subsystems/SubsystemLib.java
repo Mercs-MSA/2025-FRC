@@ -211,7 +211,7 @@ public abstract class SubsystemLib extends SubsystemBase{
             }
         }
 
-        public void configInvert(boolean invert) {  //ALWAYS test this! We do not want chains snapping. Run the motros before we put the mechanism on
+        public void isClockwise(boolean invert) {  //ALWAYS test this! We do not want chains snapping. Run the motros before we put the mechanism on
             if(!invert){
                 talonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
             }

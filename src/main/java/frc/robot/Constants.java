@@ -34,7 +34,34 @@ public class Constants {
     public static final class TestSubsystemConstants{
         public static final int id = 0;
 
-        public static final double kP = 0; 
+        public static final double kP = 100; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+
+
+        public static final double voltageOut = 0;
+        public static final double position = 0;
+    }
+
+    public static final class TestIntakeFlywheelsConstants{
+        public static final int id = 0;
+
+        public static final double kP = 100; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+
+
+        public static final double voltageOut = 0;
+        public static final double position = 0;
+    }
+
+
+    public static final class TestIntakePivotConstants{
+        public static final int id = 11;
+
+        public static final double kP = 100; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
