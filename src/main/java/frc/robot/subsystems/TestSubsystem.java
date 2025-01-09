@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
+import frc.robot.Constants.TestSubsystemConstants;
 
 // import frc.robot.subsystems.SubsystemLib;
 
@@ -24,14 +26,14 @@ public class TestSubsystem extends SubsystemLib{
         public final double velocityKv = 0;
 
         public TestSubsystemConfig() {
-            super("TestMotor", 0, "rio");  //It is on rio, but make sure that you change the id
-            configPIDGains(velocityKp, 0, 0);
-            configForwardGains(velocityKs, velocityKv, 0, 0);
+            super("TestMotor", TestSubsystemConstants.id, "rio");  //It is on rio, but make sure that you change the id
+            configPIDGains(TestSubsystemConstants.kP, 0, 0);
+            configForwardGains(TestSubsystemConstants.kS, TestSubsystemConstants.kV, 0, 0);
             configGearRatio(1);
             configNeutralBrakeMode(true);
             configInvert(true); //true if you want it to spin clockwise
             // configMotionMagic(147000, 161000, 0);
-            SetPositionVoltage(rotations);
+            // SetPositionVoltage(TestSubsystemConstants.position);
         }
 
 
