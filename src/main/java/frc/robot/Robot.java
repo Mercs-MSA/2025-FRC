@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.TestIntakePivot;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -14,9 +16,11 @@ import edu.wpi.first.wpilibj.TimedRobot;
  */
 public class Robot extends TimedRobot {
   private final RobotContainer m_robotContainer = new RobotContainer();
+  private final TestIntakePivot m_TestIntakePivot = new TestIntakePivot(true);
 
   @Override
   public void robotInit() {
+    
   }
 
   /**
@@ -28,6 +32,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("Intake Pivot Position", m_TestIntakePivot.GetPosition());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
