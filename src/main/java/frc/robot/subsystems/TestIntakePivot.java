@@ -29,6 +29,7 @@ public class TestIntakePivot extends SubsystemLib {
             configGearRatio(1);
             configNeutralBrakeMode(true);
             isClockwise(true); //true if you want it to spin clockwise
+            // configStatorCurrentLimit(10, true);
             // configMotionMagic(147000, 161000, 0);
             // SetPositionVoltage(rotations);
         }
@@ -50,6 +51,8 @@ public class TestIntakePivot extends SubsystemLib {
     public double testMotorGetPosition() {
         return GetPosition();
     }
+
+   
 
     @Override
     protected Config setConfig() {

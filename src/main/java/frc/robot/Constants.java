@@ -88,7 +88,7 @@ public class Constants {
 
 
         public static final double voltageOut = 0;
-        public static final double positionUp = 0;
+        public static final double positionUp = 2;
         public static final double positionDown = 0;
 
         public static final double tol = 0.4;
