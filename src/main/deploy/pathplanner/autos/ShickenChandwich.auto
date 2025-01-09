@@ -7,43 +7,31 @@
         {
           "type": "path",
           "data": {
-            "pathName": "QP-preloadScore"
+            "pathName": "SC-preloadScore"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "QP-humanPickup1"
+            "pathName": "SC-humanPickup1"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "QP-pickupScore1"
+            "pathName": "SC-pickupScore1"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "QP-humanPickup2"
+            "pathName": "SC-humanPickup2"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "QP-pickupScore2"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "QQ-humanPickup3"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "QP-finalScore"
+            "pathName": "SC-FinalScore"
           }
         }
       ]
