@@ -88,7 +88,15 @@ public class Constants {
 
 
         public static final double voltageOut = 0;
-        public static final double position = 0;
+        public static final double positionUp = 2;
+        public static final double positionDown = 0;
+
+        public static final double tol = 0.4;
+    }
+
+
+    public static boolean isWithinTol(double targetPose, double currentPose, double tolerance) {
+        return (Math.abs(targetPose - currentPose) <= tolerance);
     }
     
 }

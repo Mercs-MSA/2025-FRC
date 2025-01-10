@@ -42,11 +42,11 @@ public class RobotContainer {
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
-    public static final TestSubsystem m_testSubsystem = new TestSubsystem(false); // make sure to specify whether it is attached
+    // public static final TestSubsystem m_testSubsystem = new TestSubsystem(false); // make sure to specify whether it is attached
 
-    public static final TestIntakeFlywheels m_testIntakeFlywheelsMotor = new TestIntakeFlywheels(false);
+    // public static final TestIntakeFlywheels m_testIntakeFlywheelsMotor = new TestIntakeFlywheels(false);
 
-    public static final TestIntakePivot m_TestIntakePivot = new TestIntakePivot(false);
+    public static final TestIntakePivot m_TestIntakePivot = new TestIntakePivot(true);
 
     public RobotContainer() {
         configureBindings();
@@ -81,13 +81,16 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
-        //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
+        // //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
 
-        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.position));
+        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp));
+        joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown));
 
-        joystick.rightTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, true));
+
+
+        // joystick.rightTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, true));
         
-        joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));
+        // joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));
     
     }
 
