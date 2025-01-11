@@ -93,6 +93,8 @@ public abstract class SubsystemLib extends SubsystemBase{
     }
 
     public void SetPositionVoltage(double position){
+        System.out.println(position);
+        System.out.println(attached);
         if (attached) {
             PositionVoltage output = config.positionVoltage.withPosition(position);
             motor.setControl(output);
