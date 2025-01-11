@@ -4,11 +4,20 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.DoubleEntry;
+import edu.wpi.first.networktables.DoublePublisher;
+import edu.wpi.first.networktables.DoubleTopic;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,7 +29,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+  
+DoublePublisher xPub;
+DoublePublisher yPub;
+double x = 0;
+double y = 0;
+double slider = 0;
+XboxController ControlOne = new XboxController(0);
+boolean aboveThree = false;
+
   private final RobotContainer m_robotContainer = new RobotContainer();
+
+  private NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
+  private NetworkTable ntTable = ntInst.getTable("datatable");
+  private DoubleTopic xSub = ntTable.getDoubleTopic("x");
+  private DoubleEntry xEntry = xSub.getEntry(0);
+  // private SendableChooser controlChoice = new SendableChooser<>();
+  // private void addOption(String commandtest, V CommandTest)
 
   @Override
   public void robotInit() {
@@ -34,7 +59,10 @@ public class Robot extends TimedRobot {
         builder.addDoubleProperty("Tester controlled slider", () -> slider, null);
         builder.addBooleanProperty("Is above 3", () -> aboveThree, null);
       }});
+
+  xSub.publish();
   }
+
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for
@@ -47,14 +75,12 @@ public class Robot extends TimedRobot {
    * and
    * SmartDashboard integrated updating.
    */
-  double slider = 0;
-  XboxController ControlOne = new XboxController(0);
-  boolean aboveThree = false;
+
 
   @Override
   public void robotPeriodic() {
-
-    if (slider > 3) {
+    double x = xEntry.get();
+    if (x > 3) {
       aboveThree = true;
     } else {
       aboveThree = false;
