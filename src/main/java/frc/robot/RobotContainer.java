@@ -85,11 +85,11 @@ public class RobotContainer {
 
         // //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
 
-        // joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp));
-        // joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown));
+        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp));
+        joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown));
 
-         joystick.x().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionUp));
-        joystick.y().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionDown));
+        //  joystick.x().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionUp));
+        // joystick.y().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionDown));
 
 
 

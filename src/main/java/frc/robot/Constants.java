@@ -79,7 +79,7 @@ public class Constants {
     public static final class TestIntakePivotConstants{
         public static final int id = 21;
 
-        public static final boolean attached = false;
+        public static final boolean attached = true;
 
         public static final double kP = 5; 
         public static final double kS = 0; 
@@ -98,7 +98,7 @@ public class Constants {
         public static final int leaderID = 21;
         public static final int followerID = 11;
 
-        public static final boolean attached = true;
+        public static final boolean attached = false;
 
         public static final double kP = 5; 
         public static final double kS = 0; 

@@ -36,7 +36,7 @@ public class TestLeaderFollower extends SubsystemLib {
             motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig); // Leader motor
 
             // Create and configure the follower motor
-            followerMotor = TalonFXFactory.createPermanentFollowerTalon(new CanDeviceId(LeaderFollowerConstants.followerID, "canivore"), TalonFXFactory.createConfigTalon(config.id, config.talonConfig), true);
+            followerMotor = TalonFXFactory.createPermanentFollowerTalon(new CanDeviceId(LeaderFollowerConstants.followerID, "canivore"), motor, true);
         }
     }
 

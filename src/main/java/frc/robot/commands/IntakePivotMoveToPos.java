@@ -18,7 +18,7 @@ public class IntakePivotMoveToPos extends Command {
     @Override 
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
-        m_testIntakePivot.pivotToPosMM(pos);
+        m_testIntakePivot.testMotorGoToPosition(pos);
     }
 
     @Override 
