@@ -12,6 +12,7 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.CommandBeginWheels;
@@ -83,10 +84,13 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
+
+        
+
         // //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
 
-        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp));
-        joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown));
+        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+        joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
         //  joystick.x().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionUp));
         // joystick.y().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionDown));
