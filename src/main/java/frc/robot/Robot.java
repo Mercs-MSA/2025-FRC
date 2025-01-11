@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -20,6 +22,14 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run(); 
+
+    var lastResult = LimelightHelpers.getLatestResults(Constants.VisionConstants.limelightFrontName);
+    if (lastResult.valid) {
+      m_robotContainer.drivetrain.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName), Timer.getFPGATimestamp());
+      SmartDashboard.putBoolean("limelightFrontResultValid", true);
+    } else {
+      SmartDashboard.putBoolean("limelightFrontResultValid", false);
+    }
   }
 
   @Override
