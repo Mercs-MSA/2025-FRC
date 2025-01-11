@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.Constants.TestIntakePivotConstants;
 import frc.robot.Constants.TestSubsystemConstants;
 
@@ -21,6 +22,7 @@ public class TestIntakePivot extends SubsystemLib {
         public final double velocityKp = TestIntakePivotConstants.kP;
         public final double velocityKs = 0;
         public final double velocityKv = 0;
+        public final double rotations = Constants.TestIntakePivotConstants.positionUp;
 
         public TestSubsystemConfig() {
             super("IntakePivotMotor", TestIntakePivotConstants.id, "canivore");  //It is on rio, but make sure that you change the id
@@ -55,6 +57,10 @@ public class TestIntakePivot extends SubsystemLib {
     public double testMotorGetPosition() {
         return GetPosition();
     }
+
+    // public Command runPosition(double pos) {
+    //     return run(() -> (pos)).withName("PivotGoUp");
+    // }
 
    
 
