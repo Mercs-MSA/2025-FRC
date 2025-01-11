@@ -113,6 +113,10 @@ public class Constants {
         public static final double tol = 0.4;
     }
 
+    public static final class VisionConstants {
+        public static final String limelightFrontName = "limelight-front";
+    }
+
 
     public static boolean isWithinTol(double targetPose, double currentPose, double tolerance) {
         return (Math.abs(targetPose - currentPose) <= tolerance);
