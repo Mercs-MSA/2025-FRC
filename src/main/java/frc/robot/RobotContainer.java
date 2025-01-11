@@ -17,12 +17,14 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.CommandBeginWheels;
 import frc.robot.commands.CommandToPos;
 import frc.robot.commands.IntakePivotMoveToPos;
+import frc.robot.commands.LeaderFollowerToPos;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.TestSubsystem;
 import frc.robot.subsystems.SubsystemLib;
 import frc.robot.subsystems.TestIntakeFlywheels;
 import frc.robot.subsystems.TestIntakePivot;
+import frc.robot.subsystems.TestLeaderFollower;
 import frc.robot.Constants.*;
 
 public class RobotContainer {
@@ -83,8 +85,11 @@ public class RobotContainer {
 
         // //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
 
-        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp));
-        joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown));
+        // joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp));
+        // joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown));
+
+         joystick.x().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionUp));
+        joystick.y().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionDown));
 
 
 

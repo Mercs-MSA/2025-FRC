@@ -77,18 +77,37 @@ public class Constants {
 
 
     public static final class TestIntakePivotConstants{
-        public static final int id = 11;
+        public static final int id = 21;
 
         public static final boolean attached = false;
 
-        public static final double kP = 100; 
+        public static final double kP = 5; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
 
 
         public static final double voltageOut = 0;
-        public static final double positionUp = 2;
+        public static final double positionUp = 90;
+        public static final double positionDown = 0;
+
+        public static final double tol = 0.4;
+    }
+
+    public static final class LeaderFollowerConstants{
+        public static final int leaderID = 21;
+        public static final int followerID = 11;
+
+        public static final boolean attached = true;
+
+        public static final double kP = 5; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+
+
+        public static final double voltageOut = 0;
+        public static final double positionUp = 10;
         public static final double positionDown = 0;
 
         public static final double tol = 0.4;

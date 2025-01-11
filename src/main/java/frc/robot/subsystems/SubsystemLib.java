@@ -11,6 +11,8 @@ import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.controls.PositionVoltage;
+import com.ctre.phoenix6.controls.PositionVoltage;
+
 
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -92,6 +94,8 @@ public abstract class SubsystemLib extends SubsystemBase{
 
     public void SetPositionVoltage(double position){
         if (attached) {
+            
+
             PositionVoltage output = config.positionVoltage.withPosition(position);
             motor.setControl(output);
         }
@@ -195,6 +199,7 @@ public abstract class SubsystemLib extends SubsystemBase{
         public VelocityVoltage velocityControl = new VelocityVoltage(0);
         public VelocityTorqueCurrentFOC velocityTorqueCurrentFOC = new VelocityTorqueCurrentFOC(0);
         public PositionVoltage positionVoltage = new PositionVoltage(0);
+        
         
 
         public Config(String name, int id, String canbus) {

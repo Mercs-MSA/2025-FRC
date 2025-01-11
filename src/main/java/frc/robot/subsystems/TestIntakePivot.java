@@ -30,7 +30,7 @@ public class TestIntakePivot extends SubsystemLib {
             configNeutralBrakeMode(true);
             isClockwise(true); //true if you want it to spin clockwise
             // configStatorCurrentLimit(10, true);
-            // configMotionMagic(147000, 161000, 0);
+            configMotionMagic(80, 30, 0);
             // SetPositionVoltage(rotations);
         }
     }
@@ -42,6 +42,10 @@ public class TestIntakePivot extends SubsystemLib {
         if(attached){
             motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig); 
         }
+    }
+
+    public void pivotToPosMM(double pos) {
+        setMMPositionFOC(pos);
     }
 
     public void testMotorGoToPosition(double pos) {
