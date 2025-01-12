@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,13 +35,26 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run(); 
-
-    var lastResult = LimelightHelpers.getLatestResults(Constants.VisionConstants.limelightFrontName);
-    if (lastResult.valid) {
-      m_robotContainer.drivetrain.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName), Timer.getFPGATimestamp());
-      SmartDashboard.putBoolean("limelightFrontResultValid", true);
-    } else {
-      SmartDashboard.putBoolean("limelightFrontResultValid", false);
+    boolean doRejectUpdate = false;
+    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightFrontName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
+    LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightFrontName);
+    if(Math.abs(m_robotContainer.drivetrain.getPigeon2().getRate()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
+    {
+      doRejectUpdate = true;
+    }
+    if(mt2.tagCount == 0)
+    {
+      doRejectUpdate = true;
+    }
+    if(!doRejectUpdate)
+    {
+      m_robotContainer.drivetrain.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
+      m_robotContainer.drivetrain.addVisionMeasurement(
+          mt2.pose,
+          mt2.timestampSeconds);
+      double[] pose = {mt2.pose.getTranslation().getX(), mt2.pose.getTranslation().getY(), mt2.pose.getRotation().getRadians()};
+      SmartDashboard.putNumberArray("llPos", pose);
+      SmartDashboard.putNumber("llTS", mt2.timestampSeconds);
     }
 
     // SmartDashboard.putNumber("leader motor pos", m_TestLeaderFollower.testMotorGetPosition());
@@ -85,6 +99,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    // var lastResult = LimelightHelpers.getLatestResults(Constants.VisionConstants.limelightFrontName);
+       
+    // if (lastResult.valid) {
+    //   m_robotContainer.drivetrain.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName), Timer.getFPGATimestamp());
+    //   SmartDashboard.putBoolean("limelightFrontResultValid", true);
+    //   double[] pose = {LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName).getTranslation().getX(), LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName).getTranslation().getY(), LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName).getRotation().getRadians()};
+    //   SmartDashboard.putNumberArray("llPos", pose);
+    // } else {
+    //   SmartDashboard.putBoolean("limelightFrontResultValid", false);
+    // }
   }
 
   @Override
