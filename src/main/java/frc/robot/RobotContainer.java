@@ -19,6 +19,7 @@ import frc.robot.commands.CommandBeginWheels;
 import frc.robot.commands.CommandToPos;
 import frc.robot.commands.IntakePivotMoveToPos;
 import frc.robot.commands.LeaderFollowerToPos;
+import frc.robot.commands.ElevatorToPos;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.TestSubsystem;
@@ -92,10 +93,12 @@ public class RobotContainer {
         // joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
         // joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
-         joystick.x().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionUp));
-        joystick.y().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionDown));
+        //  joystick.x().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionUp));
+        // joystick.y().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionDown));
 
 
+        joystick.y().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionUp));
+        joystick.x().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionDown));
 
         // joystick.rightTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, true));
         

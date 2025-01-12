@@ -28,7 +28,7 @@ public class TestLeaderFollower extends SubsystemLib {
     }
 
     public TestSubsystemConfig config;
-    private TalonFX followerMotor; // Declare the follower motor
+    public TalonFX followerMotor; // Declare the follower motor
 
     public TestLeaderFollower(boolean attached) {
         super(attached);
@@ -41,7 +41,7 @@ public class TestLeaderFollower extends SubsystemLib {
     }
 
     public void pivotToPosMM(double pos) {
-        setMMPositionFOC(pos);
+        setMMPosition(pos);
     }
 
     public void testMotorGoToPosition(double pos) {

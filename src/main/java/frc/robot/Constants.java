@@ -94,6 +94,52 @@ public class Constants {
         public static final double tol = 0.4;
     }
 
+
+    public static final class Elevator1Constants{
+        public static final int id = 11;
+
+        public static final boolean attached = true;
+
+        public static final double kP = 1.6; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+
+
+        public static final double voltageOut = 0;
+        public static final double positionUp = 90; //change this
+        public static final double positionDown = 0;
+
+        public static final double tol = 0.4;
+    }
+
+    public static final class Elevator2Constants{
+        public static final int id = 21;
+
+        public static final boolean attached = true;
+
+        public static final double kP = 1.6; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+
+
+        public static final double voltageOut = 0;
+        public static final double positionUp = 50; // change this
+        public static final double positionDown = 0;
+
+        public static final double tol = 0.4;
+    }
+
+    public static final class mmConstants{
+        public static final double acceleration = 1;
+        public static final double speed = 30;
+        public static final double jerk = 0;
+
+
+
+    }
+
     public static final class LeaderFollowerConstants{
         public static final int leaderID = 21;
         public static final int followerID = 11;
@@ -110,7 +156,7 @@ public class Constants {
         public static final double positionUp = 10;
         public static final double positionDown = 0;
 
-        public static final double tol = 0.4;
+        public static final double tol = 0.01;
     }
 
     public static final class VisionConstants {

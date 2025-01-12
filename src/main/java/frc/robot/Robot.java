@@ -9,11 +9,23 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.TestIntakePivot;
+import frc.robot.subsystems.TestLeaderFollower;
+import frc.robot.subsystems.Elevator1;
+import frc.robot.subsystems.Elevator2;
+
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private final RobotContainer m_robotContainer;
+  public static final TestLeaderFollower m_TestLeaderFollower = new TestLeaderFollower(false);
+  public static final Elevator1 m_Elevator1 = new Elevator1(true);
+  public static final Elevator2 m_Elevator2 = new Elevator2(true);
+
+
+
+
 
   public Robot() {
     m_robotContainer = new RobotContainer();
@@ -30,6 +42,14 @@ public class Robot extends TimedRobot {
     } else {
       SmartDashboard.putBoolean("limelightFrontResultValid", false);
     }
+
+    // SmartDashboard.putNumber("leader motor pos", m_TestLeaderFollower.testMotorGetPosition());
+    // SmartDashboard.putNumber("follower motor pos", m_TestLeaderFollower.followerMotor.getPosition().getValueAsDouble());
+
+
+    SmartDashboard.putNumber("Elevator1", m_Elevator1.testMotorGetPosition());
+    SmartDashboard.putNumber("Elevator2", m_Elevator2.testMotorGetPosition());
+
   }
 
   @Override
