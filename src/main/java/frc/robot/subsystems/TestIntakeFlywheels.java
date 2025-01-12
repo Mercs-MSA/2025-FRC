@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.controls.NeutralOut;
+
 // import frc.robot.subsystems.SubsystemLib;
 
 // import com.ctre.phoenix6.CANBus;
@@ -21,7 +23,7 @@ public class TestIntakeFlywheels extends SubsystemLib {
         public final double velocityKv = 0;
 
         public TestSubsystemConfig() {
-            super("FlywheelsMotor", TestIntakeFlywheelsConstants.id, "rio");  //It is on rio, but make sure that you change the id
+            super("FlywheelsMotor", TestIntakeFlywheelsConstants.id, "canivore");  //It is on rio, but make sure that you change the id
             configPIDGains(velocityKp, 0, 0);
             configForwardGains(velocityKs, velocityKv, 0, 0);
             configGearRatio(1);
@@ -47,9 +49,13 @@ public class TestIntakeFlywheels extends SubsystemLib {
         SetPositionVoltage(pos); // doesnt actually go anywhere
     }
 
-    public void testVoltage(double voltage)
+    public void applyVoltage(double voltage)
     {
         setVoltage(voltage);
+    }
+
+    public void stopIntake(){
+        motor.setControl(new NeutralOut());
     }
 
     @Override

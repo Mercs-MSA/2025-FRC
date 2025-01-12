@@ -22,7 +22,7 @@ public class CommandBeginWheels extends Command {
     @Override 
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
-        m_testSubsystem.testVoltage(voltage * (isIntake ? -1.0 : 1.0) * (isStart ? 1 : 0));
+        m_testSubsystem.applyVoltage(voltage * (isIntake ? -1.0 : 1.0) * (isStart ? 1 : 0));
     }
 
     @Override 
@@ -34,7 +34,7 @@ public class CommandBeginWheels extends Command {
     @Override 
     public void end(boolean interrupted) {
         // This is where you put stuff that happens when the command ends
-        m_testSubsystem.testVoltage(0);
+        m_testSubsystem.applyVoltage(0);
     }
 
     @Override 

@@ -14,22 +14,27 @@ import frc.robot.subsystems.TestIntakePivot;
 import frc.robot.subsystems.TestLeaderFollower;
 import frc.robot.subsystems.Elevator1;
 import frc.robot.subsystems.Elevator2;
+import frc.robot.subsystems.TestIntakeFlywheels;
+import frc.robot.subsystems.Beambreak;
+
 
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private final RobotContainer m_robotContainer;
+  private final RobotContainer m_robotContainer = new RobotContainer();
   public static final TestLeaderFollower m_TestLeaderFollower = new TestLeaderFollower(false);
-  public static final Elevator1 m_Elevator1 = new Elevator1(true);
-  public static final Elevator2 m_Elevator2 = new Elevator2(true);
+  public static final Elevator1 m_Elevator1 = new Elevator1(false);
+  public static final Elevator2 m_Elevator2 = new Elevator2(false);
+  public static final TestIntakeFlywheels m_Intake = new TestIntakeFlywheels(true);
+  //public static final Beambreak m_Beambreak = new Beambreak();
 
 
 
 
 
   public Robot() {
-    m_robotContainer = new RobotContainer();
+    //m_robotContainer = new RobotContainer();
   }
 
   @Override
@@ -63,6 +68,8 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Elevator1", m_Elevator1.testMotorGetPosition());
     SmartDashboard.putNumber("Elevator2", m_Elevator2.testMotorGetPosition());
+
+    //SmartDashboard.putBoolean("Beambreak broken", m_Beambreak.checkBreak());
 
   }
 

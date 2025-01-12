@@ -12,6 +12,7 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
@@ -20,7 +21,9 @@ import frc.robot.commands.CommandToPos;
 import frc.robot.commands.IntakePivotMoveToPos;
 import frc.robot.commands.LeaderFollowerToPos;
 import frc.robot.commands.ElevatorToPos;
+import frc.robot.commands.CommandIntakeWheelsCollect;
 import frc.robot.generated.TunerConstants;
+import frc.robot.subsystems.Beambreak;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.TestSubsystem;
 import frc.robot.subsystems.SubsystemLib;
@@ -51,6 +54,10 @@ public class RobotContainer {
     // public static final TestIntakeFlywheels m_testIntakeFlywheelsMotor = new TestIntakeFlywheels(false);
 
     public static final TestIntakePivot m_TestIntakePivot = new TestIntakePivot(true);
+
+    public static final TestIntakeFlywheels m_Intake = new TestIntakeFlywheels(true);
+
+    public static final Beambreak m_Beambreak = new Beambreak();
 
     public RobotContainer() {
         configureBindings();
@@ -88,17 +95,12 @@ public class RobotContainer {
 
         
 
-        // //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
-
-        // joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-        // joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-
-        //  joystick.x().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionUp));
-        // joystick.y().onTrue(new LeaderFollowerToPos(LeaderFollowerConstants.positionDown));
 
 
-        joystick.y().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionUp));
-        joystick.x().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionDown));
+        // joystick.y().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionUp));
+        // joystick.x().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionDown));
+
+        joystick.rightBumper().onTrue(new SequentialCommandGroup(new CommandIntakeWheelsCollect(m_Intake, m_Beambreak, Constants.TestIntakeFlywheelsConstants.voltageOut)));
 
         // joystick.rightTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, true));
         

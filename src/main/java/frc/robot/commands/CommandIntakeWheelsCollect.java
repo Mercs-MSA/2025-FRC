@@ -3,24 +3,25 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.TestIntakeFlywheels;
 import frc.robot.subsystems.TestIntakePivot;
-import frc.robot.Beambreak;
+import frc.robot.subsystems.Beambreak;
 import frc.robot.Constants.TestIntakeFlywheelsConstants;
 import frc.robot.Constants.TestIntakePivotConstants;
-
 public class CommandIntakeWheelsCollect extends Command {
-    private TestIntakeFlywheels m_testIntakeFlywheels = new TestIntakeFlywheels(TestIntakeFlywheelsConstants.attached);
-    private Beambreak m_breambreak = new Beambreak();
+    private TestIntakeFlywheels m_testIntakeFlywheels;
+    private final Beambreak m_breambreak;
     private double voltage;
 
-    public CommandIntakeWheelsCollect(double voltage) {
-        this.voltage = voltage;
+    public CommandIntakeWheelsCollect(TestIntakeFlywheels m_testIntakeFlywheels, Beambreak m_beambreak, double voltage) {
+        voltage = voltage;
+        m_breambreak = m_beambreak;
+        this.m_testIntakeFlywheels = m_testIntakeFlywheels;
         addRequirements(m_testIntakeFlywheels);
     }
 
     @Override 
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
-        m_testIntakeFlywheels.testVoltage(voltage);
+        m_testIntakeFlywheels.applyVoltage(voltage);
     }
 
     @Override 
@@ -31,7 +32,7 @@ public class CommandIntakeWheelsCollect extends Command {
     @Override 
     public void end(boolean interrupted) {
         // This is where you put stuff that happens when the command ends
-        m_testIntakeFlywheels.testVoltage(0);
+        m_testIntakeFlywheels.stopIntake();
     }
 
     @Override 
