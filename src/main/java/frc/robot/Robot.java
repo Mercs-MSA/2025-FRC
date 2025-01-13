@@ -4,18 +4,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.networktables.DoubleEntry;
-import edu.wpi.first.networktables.DoublePublisher;
-import edu.wpi.first.networktables.DoubleTopic;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 
 
 
@@ -29,38 +23,37 @@ import edu.wpi.first.wpilibj2.command.Command;
  * project.
  */
 public class Robot extends TimedRobot {
-  
-DoublePublisher xPub;
-DoublePublisher yPub;
-double x = 0;
-double y = 0;
-double slider = 0;
 XboxController ControlOne = new XboxController(0);
-boolean aboveThree = false;
+boolean moveElevator = false;
+boolean spinIntake = false;
+boolean activateClimber = false;
 
   private final RobotContainer m_robotContainer = new RobotContainer();
-
-  private NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
-  private NetworkTable ntTable = ntInst.getTable("datatable");
-  private DoubleTopic xSub = ntTable.getDoubleTopic("x");
-  private DoubleEntry xEntry = xSub.getEntry(0);
-  // private SendableChooser controlChoice = new SendableChooser<>();
-  // private void addOption(String commandtest, V CommandTest)
+  private SendableChooser<XboxController.Button> controlChoiceElevator = new SendableChooser<>();
+  private SendableChooser<XboxController.Button> controlChoiceIntake = new SendableChooser<>();
+  private SendableChooser<XboxController.Button> controlChoiceClimber = new SendableChooser<>();
 
   @Override
   public void robotInit() {
-    SmartDashboard.putData("Test", new Sendable() {
+    SmartDashboard.putData("Selectable Action Test", new Sendable() {
       @Override
       public void initSendable(SendableBuilder builder) {
-        builder.setSmartDashboardType("Test");
-        builder.addBooleanProperty("A button", () -> ControlOne.getAButton(), null);
-        builder.addDoubleProperty("Controller x", () -> ControlOne.getLeftX(), null);
-        builder.addDoubleProperty("Controller y", () -> ControlOne.getLeftY(), null);
-        builder.addDoubleProperty("Tester controlled slider", () -> slider, null);
-        builder.addBooleanProperty("Is above 3", () -> aboveThree, null);
+        builder.addBooleanProperty("Move Elevator", () -> moveElevator, null);
+        builder.addBooleanProperty("Spin Intake", () -> spinIntake, null);
+        builder.addBooleanProperty("Activate Climb", () -> activateClimber, null);
       }});
-
-  xSub.publish();
+    controlChoiceElevator.setDefaultOption("A Button", XboxController.Button.kA);
+    controlChoiceElevator.addOption("B Button", XboxController.Button.kB);
+    controlChoiceElevator.addOption("X Button", XboxController.Button.kX);
+    SmartDashboard.putData("Elevator Buttonmap", controlChoiceElevator);
+    controlChoiceIntake.addOption("A Button", XboxController.Button.kA);
+    controlChoiceIntake.setDefaultOption("B Button", XboxController.Button.kB);
+    controlChoiceIntake.addOption("X Button", XboxController.Button.kX);
+    SmartDashboard.putData("Intake Buttonmap", controlChoiceIntake);
+    controlChoiceClimber.addOption("A Button", XboxController.Button.kA);
+    controlChoiceClimber.addOption("B Button", XboxController.Button.kB);
+    controlChoiceClimber.setDefaultOption("X Button", XboxController.Button.kX);
+    SmartDashboard.putData("Climber Buttonmap", controlChoiceClimber);
   }
 
 
@@ -79,12 +72,46 @@ boolean aboveThree = false;
 
   @Override
   public void robotPeriodic() {
-    double x = xEntry.get();
-    if (x > 3) {
-      aboveThree = true;
-    } else {
-      aboveThree = false;
+    moveElevator = false;
+    spinIntake = false;
+    activateClimber = false;
+    if (ControlOne.getAButton()) {
+      if (controlChoiceElevator.getSelected() == XboxController.Button.kA) {
+        moveElevator = true;
+      }
+      else if (controlChoiceClimber.getSelected() == XboxController.Button.kA) {
+        activateClimber = true;
+      }
+      else if (controlChoiceIntake.getSelected() == XboxController.Button.kA) {
+        spinIntake = true;
+      }
     }
+
+    if (ControlOne.getBButton()) {
+      if (controlChoiceElevator.getSelected() == XboxController.Button.kB) {
+        moveElevator = true;
+      }
+      else if (controlChoiceClimber.getSelected() == XboxController.Button.kB) {
+        activateClimber = true;
+      }
+      else if (controlChoiceIntake.getSelected() == XboxController.Button.kB) {
+        spinIntake = true;
+      }
+    }
+    
+    if (ControlOne.getXButton()) {
+      if (controlChoiceElevator.getSelected() == XboxController.Button.kX) {
+        moveElevator = true;
+      }
+      else if (controlChoiceClimber.getSelected() == XboxController.Button.kX) {
+        activateClimber = true;
+      }
+      else if (controlChoiceIntake.getSelected() == XboxController.Button.kX) {
+        spinIntake = true;
+      }
+    }
+
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
