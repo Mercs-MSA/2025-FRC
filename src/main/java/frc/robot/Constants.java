@@ -31,20 +31,85 @@ import java.util.function.Supplier;
 
 public class Constants {
 
-    public static final class TestSubsystemConstants{
-        public static final int id = 0;
 
-        public static final boolean attached = false;
+    public static final class ElevatorConstants {
+        public static final class INTAKE{
+            public static final double rotations = 0; //changed from 71 
+            // public static final Pose2d pose = AllianceFlipUtil.apply(new Pose2d(0, 0, Rotation2d.fromDegrees(0)));
+        }
 
-        public static final double kP = 100; 
+        public static final class L2{
+            public static final double rotations = 5;
+            // public static final Pose2d pose = AllianceFlipUtil.apply(new Pose2d(0, 0, Rotation2d.fromDegrees(-90)));
+        }
+
+        public static final class L3{
+            public static final double rotations = 10; //changed from 42
+            // public static final Pose2d pose = AllianceFlipUtil.apply(new Pose2d(0, 0, Rotation2d.fromDegrees(-23.9)));
+        }
+        
+        public static final class L4{
+            public static final double rotations = 15;
+            // public static final Pose2d pose = AllianceFlipUtil.apply(new Pose2d());   
+        }
+
+        
+    }
+
+
+    public static final class Elevator1Constants{
+        public static final int id = 11;
+
+        public static final boolean attached = true;
+
+        public static final double kP = 1.6; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
 
 
         public static final double voltageOut = 0;
-        public static final double position = 0;
+        public static final double positionUp = 90; //change this
+        public static final double positionDown = 0;
+
+        public static final double tol = 0.4;
     }
+
+    public static final class Elevator2Constants{
+        public static final int id = 21;
+
+        public static final boolean attached = true;
+
+        public static final double kP = 1.6; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+    }
+
+    public static final class mmConstants{
+        public static final double acceleration = 1;
+        public static final double speed = 30;
+        public static final double jerk = 0;
+
+
+
+    }
+
+
+    public static class ScoringConstants {
+        public static ScoringMode currentScoringMode = ScoringMode.INTAKE;
+        public enum ScoringMode {
+            INTAKE,
+            L1,
+            L2,
+            L3,
+            L4
+        }
+    }
+
+
+
+
+
     
 
     public static final class TestIntakeFlywheelsConstants{
@@ -82,50 +147,7 @@ public class Constants {
     }
 
 
-    public static final class Elevator1Constants{
-        public static final int id = 11;
 
-        public static final boolean attached = false;
-
-        public static final double kP = 1.6; 
-        public static final double kS = 0; 
-        public static final double kV = 0; 
-
-
-
-        public static final double voltageOut = 0;
-        public static final double positionUp = 90; //change this
-        public static final double positionDown = 0;
-
-        public static final double tol = 0.4;
-    }
-
-    public static final class Elevator2Constants{
-        public static final int id = 21;
-
-        public static final boolean attached = false;
-
-        public static final double kP = 1.6; 
-        public static final double kS = 0; 
-        public static final double kV = 0; 
-
-
-
-        public static final double voltageOut = 0;
-        public static final double positionUp = 50; // change this
-        public static final double positionDown = 0;
-
-        public static final double tol = 0.4;
-    }
-
-    public static final class mmConstants{
-        public static final double acceleration = 1;
-        public static final double speed = 30;
-        public static final double jerk = 0;
-
-
-
-    }
 
     public static final class LeaderFollowerConstants{
         public static final int leaderID = 21;

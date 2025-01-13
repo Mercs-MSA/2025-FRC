@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
   public static final Elevator1 m_Elevator1 = new Elevator1(false);
   public static final Elevator2 m_Elevator2 = new Elevator2(false);
   public static final TestIntakeFlywheels m_Intake = new TestIntakeFlywheels(true);
-  //public static final Beambreak m_Beambreak = new Beambreak();
+  // public static final Beambreak m_Beambreak = new Beambreak();
 
 
 
@@ -40,27 +40,27 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run(); 
-    boolean doRejectUpdate = false;
-    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightFrontName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
-    LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightFrontName);
-    if(Math.abs(m_robotContainer.drivetrain.getPigeon2().getRate()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
-    {
-      doRejectUpdate = true;
-    }
-    if(mt2.tagCount == 0)
-    {
-      doRejectUpdate = true;
-    }
-    if(!doRejectUpdate)
-    {
-      m_robotContainer.drivetrain.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
-      m_robotContainer.drivetrain.addVisionMeasurement(
-          mt2.pose,
-          mt2.timestampSeconds);
-      double[] pose = {mt2.pose.getTranslation().getX(), mt2.pose.getTranslation().getY(), mt2.pose.getRotation().getRadians()};
-      SmartDashboard.putNumberArray("llPos", pose);
-      SmartDashboard.putNumber("llTS", mt2.timestampSeconds);
-    }
+    // boolean doRejectUpdate = false;
+    // LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightFrontName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
+    // LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightFrontName);
+    // if(Math.abs(m_robotContainer.drivetrain.getPigeon2().getRate()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
+    // {
+    //   doRejectUpdate = true;
+    // }
+    // if(mt2.tagCount == 0)
+    // {
+    //   doRejectUpdate = true;
+    // }
+    // if(!doRejectUpdate)
+    // {
+    //   m_robotContainer.drivetrain.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
+    //   m_robotContainer.drivetrain.addVisionMeasurement(
+    //       mt2.pose,
+    //       mt2.timestampSeconds);
+    //   double[] pose = {mt2.pose.getTranslation().getX(), mt2.pose.getTranslation().getY(), mt2.pose.getRotation().getRadians()};
+    //   SmartDashboard.putNumberArray("llPos", pose);
+    //   SmartDashboard.putNumber("llTS", mt2.timestampSeconds);
+    // }
 
     // SmartDashboard.putNumber("leader motor pos", m_TestLeaderFollower.testMotorGetPosition());
     // SmartDashboard.putNumber("follower motor pos", m_TestLeaderFollower.followerMotor.getPosition().getValueAsDouble());
@@ -69,7 +69,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Elevator1", m_Elevator1.testMotorGetPosition());
     SmartDashboard.putNumber("Elevator2", m_Elevator2.testMotorGetPosition());
 
-    //SmartDashboard.putBoolean("Beambreak broken", m_Beambreak.checkBreak());
+    // SmartDashboard.putBoolean("Beambreak broken", m_Beambreak.checkBreak());
 
   }
 

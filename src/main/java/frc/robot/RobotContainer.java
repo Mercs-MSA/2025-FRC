@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.CommandBeginWheels;
-import frc.robot.commands.CommandToPos;
+// import frc.robot.commands.CommandToPos;
 import frc.robot.commands.IntakePivotMoveToPos;
 import frc.robot.commands.LeaderFollowerToPos;
 import frc.robot.commands.ElevatorToPos;
@@ -25,7 +25,7 @@ import frc.robot.commands.CommandIntakeWheelsCollect;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.Beambreak;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
-import frc.robot.subsystems.TestSubsystem;
+// import frc.robot.subsystems.TestSubsystem;
 import frc.robot.subsystems.SubsystemLib;
 import frc.robot.subsystems.TestIntakeFlywheels;
 import frc.robot.subsystems.TestIntakePivot;
@@ -97,8 +97,8 @@ public class RobotContainer {
 
 
 
-        // joystick.y().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionUp));
-        // joystick.x().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionDown));
+        joystick.y().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionUp));
+        joystick.x().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionDown));
 
         joystick.rightBumper().onTrue(new SequentialCommandGroup(new CommandIntakeWheelsCollect(m_Intake, m_Beambreak, Constants.TestIntakeFlywheelsConstants.voltageOut)));
 

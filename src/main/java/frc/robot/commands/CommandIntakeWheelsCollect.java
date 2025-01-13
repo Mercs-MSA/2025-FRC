@@ -7,15 +7,15 @@ import frc.robot.subsystems.Beambreak;
 import frc.robot.Constants.TestIntakeFlywheelsConstants;
 import frc.robot.Constants.TestIntakePivotConstants;
 public class CommandIntakeWheelsCollect extends Command {
-    private TestIntakeFlywheels m_testIntakeFlywheels;
+    private final TestIntakeFlywheels m_testIntakeFlywheels;
     private final Beambreak m_breambreak;
     private double voltage;
 
     public CommandIntakeWheelsCollect(TestIntakeFlywheels m_testIntakeFlywheels, Beambreak m_beambreak, double voltage) {
-        voltage = voltage;
-        m_breambreak = m_beambreak;
+        this.voltage = voltage;
+        this.m_breambreak = m_beambreak;
         this.m_testIntakeFlywheels = m_testIntakeFlywheels;
-        addRequirements(m_testIntakeFlywheels);
+        //addRequirements(m_testIntakeFlywheels);
     }
 
     @Override 
