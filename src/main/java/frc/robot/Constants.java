@@ -83,6 +83,9 @@ public class Constants {
         public static final double kP = 1.6; 
         public static final double kS = 0; 
         public static final double kV = 0; 
+        public static final double positionUp = 90; //change this
+
+
     }
 
     public static final class mmConstants{
