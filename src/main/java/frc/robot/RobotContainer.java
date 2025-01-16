@@ -117,7 +117,7 @@ public class RobotContainer {
         //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
         joystick.rightBumper().onTrue(new CommandIntakeWheelsCollect(m_testIntakeFlywheelsMotor, m_Beambreak, Constants.TestIntakeFlywheelsConstants.voltageOut));
 
-        joystick.x().onTrue(AutoBuilder.pathfindToPose(
+        joystick.x().whileTrue(AutoBuilder.pathfindToPose(
         new Pose2d(1.80, 7.6, Rotation2d.fromDegrees(90)), 
         new PathConstraints(
             4.0, 4.0, 
