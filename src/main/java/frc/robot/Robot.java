@@ -48,6 +48,10 @@ public class Robot extends TimedRobot {
     
     LimelightHelpers.PoseEstimate mt_front = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightFrontName);
     LimelightHelpers.PoseEstimate mt_back = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightBackName);
+
+    SmartDashboard.putBoolean("FrontLimelightOnline", mt_front != null);
+    SmartDashboard.putBoolean("BackLimelightOnline", mt_back != null);
+
     if (mt_front != null) {
       Pose2d mt_front_pose = mt_front.pose;
     }
