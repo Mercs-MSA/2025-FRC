@@ -12,9 +12,13 @@ import java.util.Map;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 // import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.path.PathConstraints;
 
-
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 // import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -60,26 +64,24 @@ public class RobotContainer {
 
     public static final TestIntakePivot m_TestIntakePivot = new TestIntakePivot(false);
 
-    // private final SendableChooser<Command> autoChooser;
+    private final SendableChooser<Command> autoChooser;
 
-    // Map<String, Command> autonomousCommands = new HashMap<String, Command>() {
-    //     {
-    //         /* Single Commands Each Subsystem */
+    Map<String, Command> autonomousCommands = new HashMap<String, Command>() {
+        {
+            /* Single Commands Each Subsystem */
             
     
-    //         /* Reset Commands */
-    //         put("Reset All", new ParallelCommandGroup(
+            /* Reset Commands */
+            put("Reset All", new ParallelCommandGroup(
             
-    //         ));
+            ));
     
-    //         // Add more commands as needed...
-    //         //Test comment
-    //     }
-    // };
+        }
+    };
 
     public RobotContainer() {
-        // autoChooser = AutoBuilder.buildAutoChooser(" ");
-        // SmartDashboard.putData("Auto Mode", null);
+        autoChooser = AutoBuilder.buildAutoChooser("Do Nothing");
+        SmartDashboard.putData("Auto Mode", autoChooser);
         configureBindings();
     }
 
@@ -115,14 +117,21 @@ public class RobotContainer {
         //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
         joystick.rightBumper().onTrue(new CommandIntakeWheelsCollect(m_testIntakeFlywheelsMotor, m_Beambreak, Constants.TestIntakeFlywheelsConstants.voltageOut));
 
-
+        joystick.x().onTrue(AutoBuilder.pathfindToPose(
+        new Pose2d(1.80, 7.6, Rotation2d.fromDegrees(90)), 
+        new PathConstraints(
+            4.0, 4.0, 
+            Units.degreesToRadians(360), Units.degreesToRadians(540)
+        ), 
+        2.0
+        ));
 
        // joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));
     
     }
 
     public Command getAutonomousCommand() {
-        // return autoChooser.getSelected();
-        return Commands.print("No autonomous command configured");
+        return autoChooser.getSelected();
+        // return Commands.print("No autonomous command configured");
     }
 }
