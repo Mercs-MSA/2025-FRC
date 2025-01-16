@@ -42,6 +42,8 @@ public class Elevator2 extends SubsystemLib {
     }
 
     public TestSubsystemConfig config;
+    private boolean hasTared = false; 
+
 
     public Elevator2(boolean attached){
         super(attached);
@@ -79,13 +81,17 @@ public class Elevator2 extends SubsystemLib {
     @Override 
     public void periodic(){
 
-        if (LimitSwitch.checkSwitch() && motor != null && Constants.isWithinTol(0, getPivotMotorPosition(), 0.3))
-        {
-            // isPressed = LimitSwitch.checkSwitch();
-            
-            tareMotor();
+        if (LimitSwitch.checkSwitch() && motor != null && !hasTared && Constants.isWithinTol(0, getPivotMotorPosition(), 0.3)) {
+            tareMotor(); 
+            hasTared = true; 
         }
 
+        // If the limit switch is released, reset the taring flag
+        if (!LimitSwitch.checkSwitch()) {
+            hasTared = false; 
+        }
+
+        // Update motor position on the SmartDashboard
         SmartDashboard.putNumber("Elevator 2 Pos", testMotorGetPosition());
 
     }

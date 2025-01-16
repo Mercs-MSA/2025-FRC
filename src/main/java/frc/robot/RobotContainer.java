@@ -40,6 +40,7 @@ import frc.robot.subsystems.SubsystemLib;
 import frc.robot.subsystems.TestIntakeFlywheels;
 import frc.robot.subsystems.TestIntakePivot;
 import frc.robot.Constants.*;
+import frc.robot.Constants.ScoringConstants.ScoringMode;
 
 
 
@@ -126,10 +127,10 @@ public class RobotContainer {
         joystick.y().onTrue(new ElevatorToPos());
         // joystick.y().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionDown));
 
-        joystick.pov(0).onTrue(new CommandChangeScoringMode(ElevatorStages.INTAKE));
-        joystick.pov(90).onTrue(new CommandChangeScoringMode(ElevatorStages.L2));
-        joystick.pov(180).onTrue(new CommandChangeScoringMode(ElevatorStages.L3));
-        joystick.pov(270).onTrue(new CommandChangeScoringMode(ElevatorStages.L4));
+        joystick.pov(0).onTrue(new CommandChangeScoringMode(ScoringMode.INTAKE));
+        joystick.pov(90).onTrue(new CommandChangeScoringMode(ScoringMode.L2));
+        joystick.pov(180).onTrue(new CommandChangeScoringMode(ScoringMode.L3));
+        joystick.pov(270).onTrue(new CommandChangeScoringMode(ScoringMode.L4));
 
         joystick.x().whileTrue(AutoBuilder.pathfindToPose(
         new Pose2d(1.80, 7.6, Rotation2d.fromDegrees(90)), 

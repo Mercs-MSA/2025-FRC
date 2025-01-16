@@ -15,7 +15,7 @@ public class ElevatorToPos extends Command {
     private double pos;
 
     public ElevatorToPos() {
-        this.pos = ScoringConstants.currentScoringMode.getRotations();
+        // this.pos = ScoringConstants.currentScoringMode.getRotations();
         addRequirements(m_Elevator1, m_Elevator2);
     }
 
@@ -23,8 +23,23 @@ public class ElevatorToPos extends Command {
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
 
-        
-        pos = ScoringConstants.currentScoringMode.getRotations();
+        switch (ScoringConstants.currentScoringMode) {
+            case INTAKE:
+              pos = ElevatorConstants.INTAKE.rotations;
+              break;
+            case L2:
+                pos = ElevatorConstants.L2.rotations;
+                break;
+            case L3:
+                pos = ElevatorConstants.L3.rotations;
+                break;
+            case L4:
+                pos = ElevatorConstants.L4.rotations;
+                break;
+            default:
+            break;
+          }
+        // pos = ScoringConstants.currentScoringMode.getRotations();
 
         m_Elevator1.motorToPosMM(pos);
         m_Elevator2.motorToPosMM(pos);

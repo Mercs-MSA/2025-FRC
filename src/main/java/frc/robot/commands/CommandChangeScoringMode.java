@@ -2,12 +2,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.ScoringConstants;
-import frc.robot.Constants.ElevatorStages;
 
 public class CommandChangeScoringMode extends Command {
-    private final ElevatorStages target;
+    private final ScoringConstants.ScoringMode target;
   
-  public CommandChangeScoringMode(ElevatorStages t) {
+  public CommandChangeScoringMode(ScoringConstants.ScoringMode t) {
     target = t;
   }
 

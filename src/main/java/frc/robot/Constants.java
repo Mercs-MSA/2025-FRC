@@ -32,21 +32,57 @@ import java.util.function.Supplier;
 
 public class Constants {
 
-    public static enum ElevatorStages {
-        INTAKE(0),
-        L2(5),
-        L3(10),
-        L4(15);
+    // public static enum ElevatorStages {
+    //     INTAKE(0),
+    //     L2(5),
+    //     L3(10),
+    //     L4(15);
 
-        public double rotations;
-        ElevatorStages(double rotations)
-        {
-            this.rotations = rotations;
-        }
+    //     public double rotations;
+    //     ElevatorStages(double rotations)
+    //     {
+    //         this.rotations = rotations;
+    //     }
         
-        public double getRotations()
-        {
-            return this.rotations;
+    //     public double getRotations()
+    //     {
+    //         return this.rotations;
+    //     }
+    // }
+
+
+    public static final class ElevatorConstants {
+        public static final class INTAKE{
+            public static final double rotations = 0; //changed from 71 
+
+        }
+
+        public static final class L2{
+            public static final double rotations = 5; //changed from 71 
+
+        }
+
+        public static final class L3{
+            public static final double rotations = 10; //changed from 71 
+
+        }
+
+        public static final class L4{
+            public static final double rotations = 15; //changed from 71 
+
+        }
+
+    
+    }
+
+
+    public static class ScoringConstants {
+        public static ScoringMode currentScoringMode = ScoringMode.INTAKE;
+        public enum ScoringMode {
+            INTAKE,
+            L2,
+            L3,
+            L4  
         }
     }
 
@@ -92,26 +128,26 @@ public class Constants {
     }
 
 
-    public static class ScoringConstants {
-        public static ElevatorStages currentScoringMode = ElevatorStages.INTAKE;
+    // public static class ScoringConstants {
+    //     public static ElevatorStages currentScoringMode = ElevatorStages.INTAKE;
 
-        public static ElevatorStages getMode(int povAngle)
-        {
-            switch (povAngle)
-            {
-                case 0:
-                    return ElevatorStages.INTAKE;
-                case 90:
-                    return ElevatorStages.L2;
-                case 180:
-                    return ElevatorStages.L3;
-                case 270:
-                    return ElevatorStages.L4;
-                default:
-                    return ElevatorStages.INTAKE;
-            }
-        }
-    }
+    //     public static ElevatorStages getMode(int povAngle)
+    //     {
+    //         switch (povAngle)
+    //         {
+    //             case 0:
+    //                 return ElevatorStages.INTAKE;
+    //             case 90:
+    //                 return ElevatorStages.L2;
+    //             case 180:
+    //                 return ElevatorStages.L3;
+    //             case 270:
+    //                 return ElevatorStages.L4;
+    //             default:
+    //                 return ElevatorStages.INTAKE;
+    //         }
+    //     }
+    // }
 
 
 
