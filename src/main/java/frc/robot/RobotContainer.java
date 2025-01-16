@@ -6,31 +6,32 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
+import com.pathplanner.lib.auto.AutoBuilder;
+
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.CommandBeginWheels;
 // import frc.robot.commands.CommandToPos;
 import frc.robot.commands.IntakePivotMoveToPos;
-import frc.robot.commands.LeaderFollowerToPos;
-import frc.robot.commands.ElevatorToPos;
-import frc.robot.commands.CommandIntakeWheelsCollect;
 import frc.robot.generated.TunerConstants;
-import frc.robot.subsystems.Beambreak;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
-// import frc.robot.subsystems.TestSubsystem;
-import frc.robot.subsystems.SubsystemLib;
+ import frc.robot.subsystems.SubsystemLib;
 import frc.robot.subsystems.TestIntakeFlywheels;
 import frc.robot.subsystems.TestIntakePivot;
-import frc.robot.subsystems.TestLeaderFollower;
 import frc.robot.Constants.*;
+
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -51,15 +52,30 @@ public class RobotContainer {
 
     // public static final TestSubsystem m_testSubsystem = new TestSubsystem(false); // make sure to specify whether it is attached
 
-    // public static final TestIntakeFlywheels m_testIntakeFlywheelsMotor = new TestIntakeFlywheels(false);
+    public static final TestIntakeFlywheels m_testIntakeFlywheelsMotor = new TestIntakeFlywheels(false);
 
-    public static final TestIntakePivot m_TestIntakePivot = new TestIntakePivot(true);
+    public static final TestIntakePivot m_TestIntakePivot = new TestIntakePivot(false);
 
-    public static final TestIntakeFlywheels m_Intake = new TestIntakeFlywheels(true);
+    private final SendableChooser<Command> autoChooser;
 
-    public static final Beambreak m_Beambreak = new Beambreak();
+    Map<String, Command> autonomousCommands = new HashMap<String, Command>() {
+        {
+            /* Single Commands Each Subsystem */
+            
+    
+            /* Reset Commands */
+            put("Reset All", new ParallelCommandGroup(
+            
+            ));
+    
+            // Add more commands as needed...
+            //Test comment
+        }
+    };
 
     public RobotContainer() {
+        autoChooser = AutoBuilder.buildAutoChooser(" ");
+        SmartDashboard.putData("Auto Mode", autoChooser);
         configureBindings();
     }
 
@@ -92,23 +108,21 @@ public class RobotContainer {
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
+        //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
 
+        joystick.x().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionUp));
+        joystick.y().onTrue(new IntakePivotMoveToPos(TestIntakePivotConstants.positionDown));
+
+
+
+        joystick.rightTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, true));
         
-
-
-
-        joystick.y().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionUp));
-        joystick.x().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionDown));
-
-        joystick.rightBumper().onTrue(new SequentialCommandGroup(new CommandIntakeWheelsCollect(m_Intake, m_Beambreak, Constants.TestIntakeFlywheelsConstants.voltageOut)));
-
-        // joystick.rightTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, true));
-        
-        // joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));
+        joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));
     
     }
 
     public Command getAutonomousCommand() {
-        return Commands.print("No autonomous command configured");
+        return autoChooser.getSelected();
+        // return Commands.print("No autonomous command configured");
     }
 }
