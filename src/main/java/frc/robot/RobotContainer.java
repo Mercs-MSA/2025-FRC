@@ -11,11 +11,11 @@ import java.util.Map;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
-import com.pathplanner.lib.auto.AutoBuilder;
+// import com.pathplanner.lib.auto.AutoBuilder;
 
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+// import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -56,7 +56,7 @@ public class RobotContainer {
 
     public static final TestIntakePivot m_TestIntakePivot = new TestIntakePivot(false);
 
-    private final SendableChooser<Command> autoChooser;
+    // private final SendableChooser<Command> autoChooser;
 
     Map<String, Command> autonomousCommands = new HashMap<String, Command>() {
         {
@@ -74,8 +74,8 @@ public class RobotContainer {
     };
 
     public RobotContainer() {
-        autoChooser = AutoBuilder.buildAutoChooser(" ");
-        SmartDashboard.putData("Auto Mode", autoChooser);
+        // autoChooser = AutoBuilder.buildAutoChooser(" ");
+        // SmartDashboard.putData("Auto Mode", null);
         configureBindings();
     }
 
@@ -117,12 +117,12 @@ public class RobotContainer {
 
         joystick.rightTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, true));
         
-        joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));
+       // joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));
     
     }
 
     public Command getAutonomousCommand() {
-        return autoChooser.getSelected();
-        // return Commands.print("No autonomous command configured");
+        // return autoChooser.getSelected();
+        return Commands.print("No autonomous command configured");
     }
 }
