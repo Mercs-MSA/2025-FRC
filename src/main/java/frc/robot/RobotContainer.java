@@ -23,16 +23,20 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.CommandBeginWheels;
+import frc.robot.commands.CommandChangeScoringMode;
 import frc.robot.commands.CommandIntakeWheelsCollect;
+import frc.robot.commands.ElevatorToPos;
 // import frc.robot.commands.CommandToPos;
 import frc.robot.commands.IntakePivotMoveToPos;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.Beambreak;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
- import frc.robot.subsystems.SubsystemLib;
+import frc.robot.subsystems.LimitSwitch;
+import frc.robot.subsystems.SubsystemLib;
 import frc.robot.subsystems.TestIntakeFlywheels;
 import frc.robot.subsystems.TestIntakePivot;
 import frc.robot.Constants.*;
+
 
 
 public class RobotContainer {
@@ -49,6 +53,8 @@ public class RobotContainer {
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
     private final Beambreak m_Beambreak = new Beambreak();
+
+    private final LimitSwitch m_LimitSwitch = new LimitSwitch();
 
     private final CommandXboxController joystick = new CommandXboxController(0);
 
@@ -115,6 +121,14 @@ public class RobotContainer {
         //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
         joystick.rightBumper().onTrue(new CommandIntakeWheelsCollect(m_testIntakeFlywheelsMotor, m_Beambreak, Constants.TestIntakeFlywheelsConstants.voltageOut));
 
+
+        joystick.x().onTrue(new ElevatorToPos());
+        // joystick.y().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionDown));
+
+        joystick.pov(0).onTrue(new CommandChangeScoringMode(ElevatorStages.INTAKE));
+        joystick.pov(90).onTrue(new CommandChangeScoringMode(ElevatorStages.L2));
+        joystick.pov(180).onTrue(new CommandChangeScoringMode(ElevatorStages.L3));
+        joystick.pov(270).onTrue(new CommandChangeScoringMode(ElevatorStages.L4));
 
 
        // joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));

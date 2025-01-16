@@ -66,8 +66,7 @@ public class Robot extends TimedRobot {
     // SmartDashboard.putNumber("follower motor pos", m_TestLeaderFollower.followerMotor.getPosition().getValueAsDouble());
 
 
-    SmartDashboard.putNumber("Elevator1", m_Elevator1.testMotorGetPosition());
-    SmartDashboard.putNumber("Elevator2", m_Elevator2.testMotorGetPosition());
+   
 
     // SmartDashboard.putBoolean("Beambreak broken", m_Beambreak.checkBreak());
 

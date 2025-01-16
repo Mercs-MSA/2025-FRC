@@ -25,35 +25,29 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.Rotations;
 
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 public class Constants {
 
+    public static enum ElevatorStages {
+        INTAKE(0),
+        L2(5),
+        L3(10),
+        L4(15);
 
-    public static final class ElevatorConstants {
-        public static final class INTAKE{
-            public static final double rotations = 0; //changed from 71 
-            // public static final Pose2d pose = AllianceFlipUtil.apply(new Pose2d(0, 0, Rotation2d.fromDegrees(0)));
-        }
-
-        public static final class L2{
-            public static final double rotations = 5;
-            // public static final Pose2d pose = AllianceFlipUtil.apply(new Pose2d(0, 0, Rotation2d.fromDegrees(-90)));
-        }
-
-        public static final class L3{
-            public static final double rotations = 10; //changed from 42
-            // public static final Pose2d pose = AllianceFlipUtil.apply(new Pose2d(0, 0, Rotation2d.fromDegrees(-23.9)));
+        public double rotations;
+        ElevatorStages(double rotations)
+        {
+            this.rotations = rotations;
         }
         
-        public static final class L4{
-            public static final double rotations = 15;
-            // public static final Pose2d pose = AllianceFlipUtil.apply(new Pose2d());   
+        public double getRotations()
+        {
+            return this.rotations;
         }
-
-        
     }
 
 
@@ -99,13 +93,23 @@ public class Constants {
 
 
     public static class ScoringConstants {
-        public static ScoringMode currentScoringMode = ScoringMode.INTAKE;
-        public enum ScoringMode {
-            INTAKE,
-            L1,
-            L2,
-            L3,
-            L4
+        public static ElevatorStages currentScoringMode = ElevatorStages.INTAKE;
+
+        public static ElevatorStages getMode(int povAngle)
+        {
+            switch (povAngle)
+            {
+                case 0:
+                    return ElevatorStages.INTAKE;
+                case 90:
+                    return ElevatorStages.L2;
+                case 180:
+                    return ElevatorStages.L3;
+                case 270:
+                    return ElevatorStages.L4;
+                default:
+                    return ElevatorStages.INTAKE;
+            }
         }
     }
 

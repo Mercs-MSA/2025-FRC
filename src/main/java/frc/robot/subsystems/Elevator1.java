@@ -1,10 +1,12 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.Constants.Elevator1Constants;
 import frc.robot.Constants.TestIntakePivotConstants;
 import frc.robot.Constants.mmConstants;
+import frc.robot.subsystems.LimitSwitch;
 
 // import frc.robot.subsystems.SubsystemLib;
 
@@ -40,6 +42,8 @@ public class Elevator1 extends SubsystemLib {
 
     public TestSubsystemConfig config;
 
+    // public boolean isPressed;
+
     public Elevator1(boolean attached){
         super(attached);
         if(attached){
@@ -70,4 +74,20 @@ public class Elevator1 extends SubsystemLib {
         config = new TestSubsystemConfig();
         return config;
     }
+
+
+    @Override 
+    public void periodic(){
+
+        if (LimitSwitch.checkSwitch() && motor != null && Constants.isWithinTol(0, getPivotMotorPosition(), 0.3))
+        {
+            // isPressed = LimitSwitch.checkSwitch();
+
+            tareMotor();
+        }
+
+        SmartDashboard.putNumber("Elevator 1 Pos", testMotorGetPosition());
+
+    }
+
 }
