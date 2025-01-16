@@ -2,7 +2,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.TestIntakePivot;
-import frc.robot.Constants.TestIntakePivotConstants;
 import frc.robot.subsystems.Elevator1;
 import frc.robot.subsystems.Elevator2;
 
@@ -15,14 +14,18 @@ public class ElevatorToPos extends Command {
 
     private double pos;
 
-    public ElevatorToPos(double pos) {
-        this.pos = pos;
+    public ElevatorToPos() {
+        this.pos = ScoringConstants.currentScoringMode.getRotations();
         addRequirements(m_Elevator1, m_Elevator2);
     }
 
     @Override 
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
+
+        
+        pos = ScoringConstants.currentScoringMode.getRotations();
+
         m_Elevator1.motorToPosMM(pos);
         m_Elevator2.motorToPosMM(pos);
     }

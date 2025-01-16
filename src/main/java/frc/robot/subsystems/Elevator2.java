@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 // import edu.wpi.first.wpilibj2.command.Command;
 // import frc.robot.Constants;
 import frc.robot.Constants.Elevator2Constants;
@@ -70,5 +72,21 @@ public class Elevator2 extends SubsystemLib {
     protected Config setConfig() {
         config = new TestSubsystemConfig();
         return config;
+    }
+
+
+    
+    @Override 
+    public void periodic(){
+
+        if (LimitSwitch.checkSwitch() && motor != null && Constants.isWithinTol(0, getPivotMotorPosition(), 0.3))
+        {
+            // isPressed = LimitSwitch.checkSwitch();
+            
+            tareMotor();
+        }
+
+        SmartDashboard.putNumber("Elevator 2 Pos", testMotorGetPosition());
+
     }
 }
