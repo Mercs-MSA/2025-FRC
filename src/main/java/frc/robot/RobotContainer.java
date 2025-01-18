@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.CommandBeginWheels;
 import frc.robot.commands.CommandChangeScoringMode;
 import frc.robot.commands.CommandIntakeWheelsCollect;
+import frc.robot.commands.CommandToPose;
 import frc.robot.commands.ElevatorToPos;
 // import frc.robot.commands.CommandToPos;
 import frc.robot.commands.IntakePivotMoveToPos;
@@ -124,7 +125,7 @@ public class RobotContainer {
         //joystick.x().onTrue(new CommandToPos(m_testSubsystem, 0));
         joystick.rightBumper().onTrue(new CommandIntakeWheelsCollect(m_testIntakeFlywheelsMotor, m_Beambreak, Constants.TestIntakeFlywheelsConstants.voltageOut));
 
-        joystick.y().onTrue(new ElevatorToPos());
+        // joystick.y().onTrue(new ElevatorToPos());
         // joystick.y().onTrue(new ElevatorToPos(Constants.Elevator1Constants.positionDown));
 
         joystick.pov(0).onTrue(new CommandChangeScoringMode(ScoringMode.INTAKE));
@@ -132,14 +133,16 @@ public class RobotContainer {
         joystick.pov(180).onTrue(new CommandChangeScoringMode(ScoringMode.L3));
         joystick.pov(270).onTrue(new CommandChangeScoringMode(ScoringMode.L4));
 
-        joystick.x().whileTrue(AutoBuilder.pathfindToPose(
-        new Pose2d(2.069, 6.087, Rotation2d.fromDegrees(135)), 
-        new PathConstraints(
-            2.0, 2.0, 
-            Units.degreesToRadians(360), Units.degreesToRadians(540)
-        ), 
-        0.1
-        ));
+        // joystick.x().whileTrue(AutoBuilder.pathfindToPose(
+        // new Pose2d(2.069, 6.087, Rotation2d.fromDegrees(135)), 
+        // new PathConstraints(
+        //     2.0, 2.0, 
+        //     Units.degreesToRadians(360), Units.degreesToRadians(540)
+        // ), 
+        // 0.1
+        // ));
+        joystick.y().whileTrue(new CommandToPose(drivetrain, new Pose2d(1.4, 6.8, new Rotation2d(2.23))));
+        // joystick.y().whileTrue();
 
        // joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));
     

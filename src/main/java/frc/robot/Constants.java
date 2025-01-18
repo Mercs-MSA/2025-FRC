@@ -50,7 +50,6 @@ public class Constants {
     //     }
     // }
 
-
     public static final class ElevatorConstants {
         public static final class INTAKE{
             public static final double rotations = 0; //changed from 71 
@@ -223,6 +222,12 @@ public class Constants {
         public static final String limelightBackName = "limelight-back";
     }
 
+    public static final class DriveToPoseConstants {
+        public static final double angularDegreesTolerance = 0.5;
+        public static final double linearMetersTolerance = 0.05;
+        public static final double linearMetersMaxVel = 2.0;
+        public static final double linearMetersMaxAccel = 4.0;
+    }
 
     public static boolean isWithinTol(double targetPose, double currentPose, double tolerance) {
         return (Math.abs(targetPose - currentPose) <= tolerance);
