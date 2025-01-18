@@ -44,20 +44,15 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     CommandScheduler.getInstance().run(); 
     boolean doRejectUpdate = false;
+    SmartDashboard.putNumber("llPigeon", m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees());
     LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightFrontName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
+    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightBackName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
     
     LimelightHelpers.PoseEstimate mt_front = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightFrontName);
     LimelightHelpers.PoseEstimate mt_back = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightBackName);
 
     SmartDashboard.putBoolean("FrontLimelightOnline", mt_front != null);
     SmartDashboard.putBoolean("BackLimelightOnline", mt_back != null);
-
-    if (mt_front != null) {
-      Pose2d mt_front_pose = mt_front.pose;
-    }
-    if (mt_back != null) {
-      Pose2d mt_back_pose = mt_back.pose;
-    }
 
     m_robotContainer.drivetrain.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
     if (mt_front != null && mt_back != null) {
@@ -74,7 +69,7 @@ public class Robot extends TimedRobot {
         {
           m_robotContainer.drivetrain.addVisionMeasurement(
               mt_front.pose,
-              Utils.getCurrentTimeSeconds());
+              Utils.fpgaToCurrentTime(mt_front.timestampSeconds));
         }
       } else {
         if(Math.abs(m_robotContainer.drivetrain.getPigeon2().getRate()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
@@ -89,7 +84,7 @@ public class Robot extends TimedRobot {
         {
           m_robotContainer.drivetrain.addVisionMeasurement(
               mt_back.pose,
-              Utils.getCurrentTimeSeconds());
+              Utils.fpgaToCurrentTime(mt_back.timestampSeconds));
         }
       }
     } else if (mt_front != null) {
@@ -105,7 +100,7 @@ public class Robot extends TimedRobot {
       {
         m_robotContainer.drivetrain.addVisionMeasurement(
             mt_front.pose,
-            Utils.getCurrentTimeSeconds());
+            Utils.fpgaToCurrentTime(mt_front.timestampSeconds));
       }
     } else if (mt_back != null) {
       if(Math.abs(m_robotContainer.drivetrain.getPigeon2().getRate()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
@@ -120,7 +115,7 @@ public class Robot extends TimedRobot {
       {
         m_robotContainer.drivetrain.addVisionMeasurement(
           mt_back.pose,
-            Utils.getCurrentTimeSeconds());
+            Utils.fpgaToCurrentTime(mt_back.timestampSeconds));
       }
     }
 
@@ -167,16 +162,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    // var lastResult = LimelightHelpers.getLatestResults(Constants.VisionConstants.limelightFrontName);
-       
-    // if (lastResult.valid) {
-    //   m_robotContainer.drivetrain.addVisionMeasurement(LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName), Timer.getFPGATimestamp());
-    //   SmartDashboard.putBoolean("limelightFrontResultValid", true);
-    //   double[] pose = {LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName).getTranslation().getX(), LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName).getTranslation().getY(), LimelightHelpers.getBotPose2d_wpiBlue(Constants.VisionConstants.limelightFrontName).getRotation().getRadians()};
-    //   SmartDashboard.putNumberArray("llPos", pose);
-    // } else {
-    //   SmartDashboard.putBoolean("limelightFrontResultValid", false);
-    // }
   }
 
   @Override

@@ -133,12 +133,12 @@ public class RobotContainer {
         joystick.pov(270).onTrue(new CommandChangeScoringMode(ScoringMode.L4));
 
         joystick.x().whileTrue(AutoBuilder.pathfindToPose(
-        new Pose2d(1.80, 7.6, Rotation2d.fromDegrees(90)), 
+        new Pose2d(2.069, 6.087, Rotation2d.fromDegrees(135)), 
         new PathConstraints(
-            4.0, 4.0, 
+            2.0, 2.0, 
             Units.degreesToRadians(360), Units.degreesToRadians(540)
         ), 
-        2.0
+        0.1
         ));
 
        // joystick.leftTrigger(0.1).whileTrue(new CommandBeginWheels(m_testIntakeFlywheelsMotor, 0.5, true, false));
