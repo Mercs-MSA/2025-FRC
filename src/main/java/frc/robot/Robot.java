@@ -4,14 +4,9 @@
 
 package frc.robot;
 
-import edu.wpi.first.util.sendable.Sendable;
-import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,37 +18,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-XboxController ControlOne = new XboxController(0);
-boolean moveElevator = false;
-boolean spinIntake = false;
-boolean activateClimber = false;
-
   private final RobotContainer m_robotContainer = new RobotContainer();
-  private SendableChooser<XboxController.Button> controlChoiceElevator = new SendableChooser<>();
-  private SendableChooser<XboxController.Button> controlChoiceIntake = new SendableChooser<>();
-  private SendableChooser<XboxController.Button> controlChoiceClimber = new SendableChooser<>();
+
+  public final CommandXboxController driver = new CommandXboxController(0);
+
+  private final ControlMapper driverMappedButtonA = new ControlMapper(driver.a(), "Driver Button A");
+  private final ControlMapper driverMappedButtonB = new ControlMapper(driver.b(), "Driver Button B");
+  private final ControlMapper driverMappedButtonX = new ControlMapper(driver.x(), "Driver Button X");
+  private final ControlMapper driverMappedButtonY = new ControlMapper(driver.y(), "Driver Button Y");
 
   @Override
   public void robotInit() {
-    SmartDashboard.putData("Selectable Action Test", new Sendable() {
-      @Override
-      public void initSendable(SendableBuilder builder) {
-        builder.addBooleanProperty("Move Elevator", () -> moveElevator, null);
-        builder.addBooleanProperty("Spin Intake", () -> spinIntake, null);
-        builder.addBooleanProperty("Activate Climb", () -> activateClimber, null);
-      }});
-    controlChoiceElevator.setDefaultOption("A Button", XboxController.Button.kA);
-    controlChoiceElevator.addOption("B Button", XboxController.Button.kB);
-    controlChoiceElevator.addOption("X Button", XboxController.Button.kX);
-    SmartDashboard.putData("Elevator Buttonmap", controlChoiceElevator);
-    controlChoiceIntake.addOption("A Button", XboxController.Button.kA);
-    controlChoiceIntake.setDefaultOption("B Button", XboxController.Button.kB);
-    controlChoiceIntake.addOption("X Button", XboxController.Button.kX);
-    SmartDashboard.putData("Intake Buttonmap", controlChoiceIntake);
-    controlChoiceClimber.addOption("A Button", XboxController.Button.kA);
-    controlChoiceClimber.addOption("B Button", XboxController.Button.kB);
-    controlChoiceClimber.setDefaultOption("X Button", XboxController.Button.kX);
-    SmartDashboard.putData("Climber Buttonmap", controlChoiceClimber);
   }
 
 
@@ -72,46 +47,7 @@ boolean activateClimber = false;
 
   @Override
   public void robotPeriodic() {
-    moveElevator = false;
-    spinIntake = false;
-    activateClimber = false;
-    if (ControlOne.getAButton()) {
-      if (controlChoiceElevator.getSelected() == XboxController.Button.kA) {
-        moveElevator = true;
-      }
-      else if (controlChoiceClimber.getSelected() == XboxController.Button.kA) {
-        activateClimber = true;
-      }
-      else if (controlChoiceIntake.getSelected() == XboxController.Button.kA) {
-        spinIntake = true;
-      }
-    }
-
-    if (ControlOne.getBButton()) {
-      if (controlChoiceElevator.getSelected() == XboxController.Button.kB) {
-        moveElevator = true;
-      }
-      else if (controlChoiceClimber.getSelected() == XboxController.Button.kB) {
-        activateClimber = true;
-      }
-      else if (controlChoiceIntake.getSelected() == XboxController.Button.kB) {
-        spinIntake = true;
-      }
-    }
-    
-    if (ControlOne.getXButton()) {
-      if (controlChoiceElevator.getSelected() == XboxController.Button.kX) {
-        moveElevator = true;
-      }
-      else if (controlChoiceClimber.getSelected() == XboxController.Button.kX) {
-        activateClimber = true;
-      }
-      else if (controlChoiceIntake.getSelected() == XboxController.Button.kX) {
-        spinIntake = true;
-      }
-    }
-
-
+    CommandScheduler.getInstance().run();
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
