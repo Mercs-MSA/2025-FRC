@@ -19,6 +19,7 @@ import frc.robot.subsystems.Elevator1;
 import frc.robot.subsystems.Elevator2;
 import frc.robot.subsystems.TestIntakeFlywheels;
 import frc.robot.subsystems.Beambreak;
+import frc.robot.subsystems.CANdle_LED;
 
 
 
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
   public static final Elevator2 m_Elevator2 = new Elevator2(false);
   public static final TestIntakeFlywheels m_Intake = new TestIntakeFlywheels(true);
   // public static final Beambreak m_Beambreak = new Beambreak();
+  public static final CANdle_LED m_Candle = new CANdle_LED();
 
 
 
